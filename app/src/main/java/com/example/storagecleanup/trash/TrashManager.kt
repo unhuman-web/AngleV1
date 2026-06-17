@@ -48,16 +48,8 @@ class TrashManager(private val context: Context) {
                 context.contentResolver,
                 listOf(file.uri)
             )
-
-            val receiver = context.registerReceiver(null, android.content.IntentFilter())
-            try {
-                pendingIntent.send(context, 0, null, null, null)
-                true
-            } catch (e: Exception) {
-                false
-            } finally {
-                receiver?.let { context.unregisterReceiver(it) }
-            }
+            pendingIntent.send(context)
+            true
         } catch (e: Exception) {
             false
         }
@@ -164,15 +156,8 @@ class TrashManager(private val context: Context) {
                 context.contentResolver,
                 listOf(file.uri)
             )
-            val receiver = context.registerReceiver(null, android.content.IntentFilter())
-            try {
-                pendingIntent.send(context, 0, null, null, null)
-                true
-            } catch (e: Exception) {
-                false
-            } finally {
-                receiver?.let { context.unregisterReceiver(it) }
-            }
+            pendingIntent.send(context)
+            true
         } catch (e: Exception) {
             false
         }

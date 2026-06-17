@@ -43,7 +43,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             StorageCleanupTheme {
-                StorageCleanupApp()
+                StorageCleanupContent()
             }
         }
     }
@@ -64,7 +64,7 @@ private val screens = listOf(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun StorageCleanupApp() {
+fun StorageCleanupContent() {
     val navController = rememberNavController()
     val viewModel: CleanupViewModel = viewModel()
     val navBackStackEntry by navController.currentBackStackEntryAsState()

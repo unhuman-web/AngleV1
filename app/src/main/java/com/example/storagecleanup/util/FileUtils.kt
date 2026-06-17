@@ -86,7 +86,7 @@ object FileUtils {
                 val idColumn = cursor.getColumnIndexOrThrow(MediaStore.MediaColumns._ID)
                 while (cursor.moveToNext()) {
                     val id = cursor.getLong(idColumn)
-                    uris.append(
+                    uris.add(
                         Uri.withAppendedPath(collection, id.toString())
                     )
                 }
