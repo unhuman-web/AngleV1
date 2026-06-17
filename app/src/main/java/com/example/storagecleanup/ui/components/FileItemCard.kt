@@ -10,8 +10,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AudioFile
-import androidx.compose.material.icons.filled.BrokenImage
+import androidx.compose.material.icons.filled.InsertDriveFile
 import androidx.compose.material.icons.filled.Image
 import androidx.compose.material.icons.filled.MusicNote
 import androidx.compose.material.icons.filled.Videocam
@@ -102,7 +101,7 @@ fun DeleteConfirmDialog(
 ) {
     AlertDialog(
         onDismissRequest = onDismiss,
-        icon = { Icon(Icons.Default.BrokenImage, contentDescription = null) },
+        icon = { Icon(Icons.Default.Image, contentDescription = null) },
         title = { Text("Delete $fileCount files?") },
         text = {
             Text("This will permanently delete $totalSize of data. This action cannot be undone.")
@@ -158,7 +157,7 @@ val FileItem.mimeTypeIcon: ImageVector
         isImage -> Icons.Default.Image
         isVideo -> Icons.Default.Videocam
         isAudio -> Icons.Default.MusicNote
-        else -> Icons.Default.AudioFile
+        else -> Icons.Default.InsertDriveFile
     }
 
 val FileItem.formattedDate: String

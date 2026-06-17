@@ -52,11 +52,11 @@ jobs:
 
       - name: Build Debug APK
         if: github.event.inputs.build_type == 'debug'
-        run: ./gradlew assembleDebug
+        run: ./gradlew assembleDebug --stacktrace
 
       - name: Build Release APK
         if: github.event.inputs.build_type == 'release' || github.ref == 'refs/heads/main'
-        run: ./gradlew assembleRelease
+        run: ./gradlew assembleRelease --stacktrace
 
       - name: Upload Debug APK
         if: github.event.inputs.build_type == 'debug'

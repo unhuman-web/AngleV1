@@ -8,7 +8,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.DeleteSweep
-import androidx.compose.material.icons.filled.FolderDelete
+import androidx.compose.material.icons.filled.Folder
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -51,7 +51,7 @@ class MainActivity : ComponentActivity() {
 
 sealed class Screen(val route: String, val label: String, val icon: ImageVector) {
     data object Home : Screen("home", "Home", Icons.Default.Home)
-    data object Scan : Screen("scan", "Scan", Icons.Default.FolderDelete)
+    data object Scan : Screen("scan", "Scan", Icons.Default.Folder)
     data object Duplicates : Screen("duplicates", "Duplicates", Icons.Default.DeleteSweep)
     data object Trash : Screen("trash", "Trash", Icons.Default.DeleteSweep)
 }

@@ -158,7 +158,7 @@ fun ScanScreen(
                 val animatedProgress by animateFloatAsState(targetValue = progress)
 
                 CircularProgressIndicator(
-                    progress = { animatedProgress },
+                    progress = animatedProgress,
                     modifier = Modifier.size(80.dp)
                 )
                 Spacer(modifier = Modifier.height(16.dp))
@@ -169,7 +169,7 @@ fun ScanScreen(
                 )
                 Spacer(modifier = Modifier.height(8.dp))
                 LinearProgressIndicator(
-                    progress = { animatedProgress },
+                    progress = animatedProgress,
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(horizontal = 32.dp)
