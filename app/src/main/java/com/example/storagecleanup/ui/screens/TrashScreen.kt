@@ -175,6 +175,7 @@ fun TrashScreen(viewModel: CleanupViewModel) {
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun TrashItemCard(
     item: TrashItem,
