@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Storage Cleanup</string>
+    <string name="scan_button">Scan Storage</string>
+    <string name="duplicates_tab">Duplicates</string>
+    <string name="trash_tab">Trash</string>
+    <string name="home_tab">Home</string>
+    <string name="select_folder">Select Folder to Scan</string>
+    <string name="permission_rationale">This app needs access to your files to find duplicates and manage trash. Please grant the requested permission.</string>
+    <string name="delete_confirmation">Delete %1$d files (%2$s)? This action cannot be undone.</string>
+    <string name="empty_trash">Empty Trash</string>
+    <string name="restore">Restore</string>
+    <string name="select_all_but_first">Select Duplicates</string>
+    <string name="no_duplicates_found">No duplicates found</string>
+    <string name="no_trash_items">Trash is empty</string>
+    <string name="storage_used">Storage Used</string>
+    <string name="recoverable_space">Recoverable Space</string>
+    <string name="duplicate_space">From Duplicates</string>
+    <string name="trash_space">From Trash</string>
+    <string name="scanning">Scanning…</string>
+    <string name="scan_complete">Scan Complete</string>
+    <string name="manage_all_files">Allow Access to All Files</string>
+    <string name="manage_all_files_description">Storage Cleanup needs access to all files to find duplicates across your device.</string>
+</resources>
