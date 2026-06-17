@@ -45,7 +45,6 @@ import androidx.compose.ui.unit.dp
 import com.example.storagecleanup.model.FileItem
 import com.example.storagecleanup.model.TrashItem
 import com.example.storagecleanup.ui.components.DeleteConfirmDialog
-import com.example.storagecleanup.ui.components.FileItemCard
 import com.example.storagecleanup.viewmodel.CleanupViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
