@@ -48,7 +48,7 @@ class TrashManager(private val context: Context) {
                 context.contentResolver,
                 listOf(file.uri)
             )
-            pendingIntent.send(context)
+            pendingIntent.send()
             true
         } catch (e: Exception) {
             false
@@ -156,7 +156,7 @@ class TrashManager(private val context: Context) {
                 context.contentResolver,
                 listOf(file.uri)
             )
-            pendingIntent.send(context)
+            pendingIntent.send()
             true
         } catch (e: Exception) {
             false
