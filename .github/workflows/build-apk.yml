@@ -34,14 +34,12 @@ jobs:
       - name: Generate Gradle wrapper
         run: gradle wrapper --gradle-version 8.11.1
 
-      - name: Decode keystore (release only)
-        if: github.event.inputs.build_type == 'release' || github.ref == 'refs/heads/main'
+      - name: Decode keystore
+        if: github.event.inputs.build_type == 'release'
         run: echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 -d > app/release-key.jks
-        env:
-          KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
 
-      - name: Create keystore properties (release only)
-        if: github.event.inputs.build_type == 'release' || github.ref == 'refs/heads/main'
+      - name: Create keystore properties
+        if: github.event.inputs.build_type == 'release'
         run: |
           cat > keystore.properties << EOF
           storeFile=release-key.jks
@@ -51,15 +49,15 @@ jobs:
           EOF
 
       - name: Build Debug APK
-        if: github.event.inputs.build_type == 'debug'
+        if: github.event_name == 'push' || github.event.inputs.build_type == 'debug'
         run: ./gradlew assembleDebug --stacktrace
 
       - name: Build Release APK
-        if: github.event.inputs.build_type == 'release' || github.ref == 'refs/heads/main'
+        if: github.event.inputs.build_type == 'release'
         run: ./gradlew assembleRelease --stacktrace
 
       - name: Upload Debug APK
-        if: github.event.inputs.build_type == 'debug'
+        if: github.event_name == 'push' || github.event.inputs.build_type == 'debug'
         uses: actions/upload-artifact@v4
         with:
           name: storage-cleanup-debug
@@ -67,7 +65,7 @@ jobs:
           retention-days: 30
 
       - name: Upload Release APK
-        if: github.event.inputs.build_type == 'release' || github.ref == 'refs/heads/main'
+        if: github.event.inputs.build_type == 'release'
         uses: actions/upload-artifact@v4
         with:
           name: storage-cleanup-release
