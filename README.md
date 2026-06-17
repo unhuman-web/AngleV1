@@ -31,45 +31,45 @@ The app requires the following permissions:
 
 ### Prerequisites
 
-- Android Studio Ladybug or later
+- Android Studio Ladybug or later (optional — can build entirely via GitHub Actions)
 - JDK 17+
 - Android SDK 35
 
-### Local Build
+### Option 1: Build via GitHub Actions (Recommended)
 
+This project is designed to build entirely via GitHub Actions. No local Android Studio needed.
+
+**Step 1: Create a GitHub repository**
 ```bash
-# Clone the repository
-git clone <repository-url>
-cd storage-cleanup
-
-# Build debug APK
-./gradlew assembleDebug
-
-# Build release APK (requires signing config)
-./gradlew assembleRelease
+git remote add origin <your-repo-url>
+git push -u origin master
 ```
 
-### CI/CD (GitHub Actions)
+**Step 2: Build Debug APK**
+1. Go to your repository on GitHub
+2. Click **Actions** → **Build APK**
+3. Click **Run workflow**
+4. Select `debug` as the build type
+5. Click **Run workflow**
+6. When complete, download the APK from the workflow artifacts
 
-The project includes a GitHub Actions workflow that builds a signed release APK.
+**Step 3: Build Release APK (Optional)**
+1. Generate a keystore (see below)
+2. Add GitHub Secrets (see below)
+3. Run the workflow with `release` build type, or push to `main` branch
 
-#### Required GitHub Secrets
+#### Required GitHub Secrets for Release Builds
 
-To build signed APKs, add these secrets to your repository:
+Go to your repository → **Settings** → **Secrets and variables** → **Actions** → **New repository secret**
 
-1. **`KEYSTORE_BASE64`**: Base64-encoded keystore file
-   ```bash
-   base64 -i release-key.jks | tr -d '\n'
-   ```
+| Secret | Value |
+|--------|-------|
+| `KEYSTORE_BASE64` | Base64-encoded keystore (see below) |
+| `KEYSTORE_PASSWORD` | Your keystore password |
+| `KEY_ALIAS` | Key alias (e.g., `storage-cleanup`) |
+| `KEY_PASSWORD` | Your key password |
 
-2. **`KEYSTORE_PASSWORD`**: Keystore password
-
-3. **`KEY_ALIAS`**: Key alias in the keystore
-
-4. **`KEY_PASSWORD`**: Key password
-
-#### Generating a Keystore
-
+**Generating a keystore:**
 ```bash
 keytool -genkey -v \
   -keystore release-key.jks \
@@ -77,6 +77,26 @@ keytool -genkey -v \
   -keyalg RSA \
   -keysize 2048 \
   -validity 10000
+
+# Convert to base64 for GitHub Secret
+base64 -i release-key.jks | tr -d '\n'
+```
+
+### Option 2: Local Build (Requires Android Studio)
+
+```bash
+# Clone the repository
+git clone <repository-url>
+cd storage-cleanup
+
+# Generate Gradle wrapper (if not present)
+gradle wrapper
+
+# Build debug APK
+./gradlew assembleDebug
+
+# Build release APK (requires keystore.properties)
+./gradlew assembleRelease
 ```
 
 ## How It Works
