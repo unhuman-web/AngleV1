@@ -44,12 +44,7 @@ class TrashManager(private val context: Context) {
 
     private fun moveToSystemTrash(file: FileItem): Boolean {
         return try {
-            val pendingIntent = MediaStore.createTrashRequest(
-                context.contentResolver,
-                listOf(file.uri)
-            )
-            pendingIntent.send()
-            true
+            context.contentResolver.delete(file.uri, null, null) > 0
         } catch (e: Exception) {
             false
         }
@@ -152,12 +147,7 @@ class TrashManager(private val context: Context) {
 
     private fun deleteViaMediaStore(file: FileItem): Boolean {
         return try {
-            val pendingIntent = MediaStore.createDeleteRequest(
-                context.contentResolver,
-                listOf(file.uri)
-            )
-            pendingIntent.send()
-            true
+            context.contentResolver.delete(file.uri, null, null) > 0
         } catch (e: Exception) {
             false
         }
